@@ -11,6 +11,6 @@ class StringCalculator {
 			sum+= Integer.parseInt((String) st.nextElement());
 		}	
 		return sum;
-	}
+	}  
 
 }
