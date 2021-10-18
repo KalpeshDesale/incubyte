@@ -4,10 +4,10 @@ class StringCalculator {
 
 	public int add(String input) 
 	  {
-		  	int i=0;
+		  	int i = 0;
 		  	int sum = 0;int a = 0;
 		  	int length = input.length();
-		  	String temp = "";
+		  	String temp = "" ;
 		  	TreeSet<String> del = new TreeSet();
 		  	del.add("\n");
 		  	del.add(",");
@@ -16,7 +16,7 @@ class StringCalculator {
 		  	if(length>1 && input.charAt(0)=='/' && input.charAt(1)=='/')
 		  	{
 		  		boolean start = false;
-		  		String del_temp = "";
+		  		String  del_temp = "";
 		  		for(i=2;i<length && input.charAt(i)!='\n';i++)
 			  	{
 		  			if(start)
