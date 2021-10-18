@@ -8,16 +8,38 @@ class StringCalculator {
 		  	int sum = 0;int a = 0;
 		  	int length = input.length();
 		  	String temp = "";
-		  	TreeSet<Character> del = new TreeSet();
-		  	del.add('\n');
-		  	del.add(',');
+		  	TreeSet<String> del = new TreeSet();
+		  	del.add("\n");
+		  	del.add(",");
 		  	ArrayList<Integer> negatives = new ArrayList();
 		  	
 		  	if(length>1 && input.charAt(0)=='/' && input.charAt(1)=='/')
 		  	{
+		  		boolean start = false;
+		  		String del_temp = "";
 		  		for(i=2;i<length && input.charAt(i)!='\n';i++)
 			  	{
-			  		del.add(input.charAt(i));
+		  			if(start)
+		  			{
+		  				if(input.charAt(i)==']')
+			  			{
+		  					if(del_temp.length()>0)
+		  						del.add(del_temp);
+		  					del_temp = "";
+			  				start=false;
+			  			}
+		  				else
+		  				{
+		  					del_temp = del_temp + input.charAt(i);
+		  				}
+		  			}
+		  			else
+		  			{
+		  				if(input.charAt(i)=='[')
+		  				{
+			  				start=true;
+			  			}
+		  			}
 			  	}
 		  	}
 		  	
@@ -25,10 +47,19 @@ class StringCalculator {
 		  	{
 		  		boolean cont = false;
 		  		char curr = input.charAt(i);
-		  		Iterator<Character> it = del.iterator();
+		  		Iterator<String> it = del.iterator();
 		  		while(it.hasNext())
 		  		{
-		  			if(curr==it.next())
+		  			String del_curr = it.next();
+		  			boolean del_found = false;
+		  			for(int j=0;j<del_curr.length();j++)
+		  			{
+		  				if(del_curr.charAt(j)!=input.charAt(i+j))
+		  				{
+		  					del_found=true;
+		  				}
+		  			}
+		  			if(del_found)
 		  			{
 		  				a = 0;
 			  	  		try
